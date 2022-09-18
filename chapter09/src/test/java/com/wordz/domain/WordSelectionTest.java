@@ -4,16 +4,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 public class WordSelectionTest {
 
     private static final int HIGHEST_WORD_NUMBER = 3 ;
     private static final int WORD_NUMBER_SHINE = 2 ;
-
     @Mock
     private WordRepository repository;
 
@@ -22,7 +22,7 @@ public class WordSelectionTest {
 
     @BeforeEach
     void beforeEachTest() {
-        MockitoAnnotations.openMocks(this);
+        // MockitoAnnotations.openMocks(this);
 
         when(repository.highestWordNumber()).thenReturn(HIGHEST_WORD_NUMBER);
 
