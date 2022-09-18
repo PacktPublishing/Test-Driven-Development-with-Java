@@ -22,8 +22,6 @@ public class WordSelectionTest {
 
     @BeforeEach
     void beforeEachTest() {
-        // MockitoAnnotations.openMocks(this);
-
         when(repository.highestWordNumber()).thenReturn(HIGHEST_WORD_NUMBER);
 
         when(repository.fetchWordByNumber(WORD_NUMBER_SHINE)).thenReturn("SHINE");
