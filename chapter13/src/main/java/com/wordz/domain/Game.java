@@ -50,7 +50,7 @@ public class Game {
         return isGameOver;
     }
 
-    public void end() {
+    private void end() {
         isGameOver = true;
     }
 }
