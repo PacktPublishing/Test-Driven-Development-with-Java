@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+group 'com.wordz'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testImplementation 'org.assertj:assertj-core:3.22.0'
+    testImplementation 'org.mockito:mockito-core:4.8.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:4.8.0'
+    testImplementation 'com.github.database-rider:rider-core:1.35.0'
+    testImplementation 'com.github.database-rider:rider-junit5:1.35.0'
+
+    implementation 'org.postgresql:postgresql:42.5.0'
+    implementation 'org.jdbi:jdbi3-core:3.34.0'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+}
+
+test {
+    useJUnitPlatform()
+}
