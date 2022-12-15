@@ -7,12 +7,21 @@ public class Game {
     private int attemptNumber;
     private boolean isGameOver;
 
-    public Game(Player player, String targetWord, int attemptNumber, boolean isGameOver) {
+    Game(Player player, String targetWord, int attemptNumber, boolean isGameOver) {
         this.player = player;
         this.targetWord = targetWord;
         this.attemptNumber = attemptNumber;
         this.isGameOver = isGameOver;
     }
+
+    static Game create(Player player, String correctWord) {
+        return new Game(player, correctWord, 0, false);
+    }
+
+    static Game create(Player player, String correctWord, int attemptNumber) {
+        return new Game(player, correctWord, attemptNumber, false);
+    }
+
     public Player getPlayer() {
         return player;
     }

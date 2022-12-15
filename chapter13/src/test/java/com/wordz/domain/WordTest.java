@@ -51,6 +51,13 @@ public class WordTest {
         assertThat(score.allCorrect()).isFalse();
     }
 
+    @Test
+    void accessesLetters() {
+        var word = new Word("ARISE");
+        var score = word.guess("ARI*E");
+        assertThat(score.letters()).hasSize(5);
+    }
+
     private void assertScoreForGuess(Score score, Letter... expectedScores) {
         for (int position = 0; position < expectedScores.length; position++) {
             Letter expected = expectedScores[position];
