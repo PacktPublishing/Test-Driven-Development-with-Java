@@ -13,6 +13,15 @@ public class Game {
         this.attemptNumber = attemptNumber;
         this.isGameOver = isGameOver;
     }
+
+    static Game create(Player player, String correctWord) {
+        return new Game(player, correctWord, 0, false);
+    }
+
+    static Game create(Player player, String correctWord, int attemptNumber) {
+        return new Game(player, correctWord, attemptNumber, false);
+    }
+
     public Player getPlayer() {
         return player;
     }
@@ -41,7 +50,7 @@ public class Game {
     private void trackNumberOfAttempts() {
         attemptNumber++;
 
-        if (attemptNumber == MAXIMUM_NUMBER_ALLOWED_GUESSES ) {
+        if (attemptNumber == MAXIMUM_NUMBER_ALLOWED_GUESSES) {
             end();
         }
     }
@@ -50,7 +59,7 @@ public class Game {
         return isGameOver;
     }
 
-    private void end() {
+    void end() {
         isGameOver = true;
     }
 }

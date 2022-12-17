@@ -1,8 +1,9 @@
 package com.wordz.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import static java.util.Collections.unmodifiableList;
 
 public class Score {
     private final String correct;
@@ -30,6 +31,10 @@ public class Score {
                 .count();
 
         return totalCorrect == results.size();
+    }
+
+    public List<Letter> letters() {
+        return unmodifiableList(results);
     }
 
     private Letter scoreFor(char current) {

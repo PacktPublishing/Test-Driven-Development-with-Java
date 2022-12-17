@@ -7,7 +7,6 @@ import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.junit5.api.DBRider;
 import com.wordz.domain.Game;
-import com.wordz.domain.GameAssert;
 import com.wordz.domain.GameRepository;
 import com.wordz.domain.Player;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,8 +35,7 @@ public class GameRepositoryPostgresTest {
 
     @Test
     @DataSet(value = "adapters/data/emptyGame.json",
-            cleanBefore = true
-    )
+            cleanBefore = true)
     @ExpectedDataSet(value = "/adapters/data/createGame.json")
     public void storesNewGame() {
         var player = new Player("player1");
@@ -49,8 +47,7 @@ public class GameRepositoryPostgresTest {
 
     @Test
     @DataSet(value = "adapters/data/createGame.json",
-            cleanBefore = true
-    )
+            cleanBefore = true)
     public void fetchesGame() {
         GameRepository games = new GameRepositoryPostgres(dataSource);
 
@@ -58,18 +55,16 @@ public class GameRepositoryPostgresTest {
         Optional<Game> game = games.fetchForPlayer(player);
 
         assertThat(game.isPresent()).isTrue();
-
-        GameAssert.assertThat(game.get())
-                .hasPlayer(player)
-                .hasWord("BONUS")
-                .hasAttemptNumber(0)
-                .hasGameOver(false);
+        var actual = game.get();
+        assertThat(actual.getPlayer()).isEqualTo(player);
+        assertThat(actual.getWord()).isEqualTo("BONUS");
+        assertThat(actual.getAttemptNumber()).isZero();
+        assertThat(actual.isGameOver()).isFalse();
     }
 
     @Test
     @DataSet(value = "adapters/data/emptyGame.json",
-            cleanBefore = true
-    )
+            cleanBefore = true)
     public void reportsGameNotFoundForPlayer() {
         GameRepository games = new GameRepositoryPostgres(dataSource);
 
@@ -81,8 +76,7 @@ public class GameRepositoryPostgresTest {
 
     @Test
     @DataSet(value = "adapters/data/createGame.json",
-            cleanBefore = true
-    )
+            cleanBefore = true)
     @ExpectedDataSet(value = "/adapters/data/updatedGame.json")
     public void updatesGame() {
         var player = new Player("player1");
@@ -93,5 +87,4 @@ public class GameRepositoryPostgresTest {
 
         games.update(game);
     }
-
 }
