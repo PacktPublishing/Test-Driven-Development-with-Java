@@ -8,7 +8,7 @@ public class UserGreeting {
     }
 
     public String formatGreeting(UserId id) {
-        return String.format("Hello and Welcome, %s",
+        return String.format("Hello and welcome, %s",
                 profiles.fetchNicknameFor(id));
     }
 }
