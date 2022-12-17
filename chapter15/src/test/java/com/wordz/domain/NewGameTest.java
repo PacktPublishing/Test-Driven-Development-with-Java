@@ -3,116 +3,71 @@ package com.wordz.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
-import org.mockito.Mock;
+import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
-import static com.wordz.domain.GameAssert.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class NewGameTest {
-    public static final String TARGET_WORD = "ARISE";
+    private static final Player PLAYER = new Player("player1");
+    private static final String CORRECT_WORD = "ARISE";
+
     @Mock
     private GameRepository gameRepository;
-
-    @Captor
-    private ArgumentCaptor<Game> gameArgument ;
-
     @Mock
-    private RandomNumbers random ;
-
+    private WordRepository wordRepository ;
     @Mock
-    private WordRepository wordRepository;
-
+    private RandomNumbers randomNumbers ;
+    @InjectMocks
     private Wordz wordz;
-    private final Player player = new Player("player1");
-
-    @BeforeEach
-    void setUp() {
-        wordz = new Wordz(gameRepository, wordRepository, random);
-    }
 
     @Test
     void startsNewGame() {
-        givenWordInRepository();
-        givenNoGameExists(player);
+        givenWordToSelect(CORRECT_WORD);
 
-        boolean succeeded = wordz.newGame(player);
+        wordz.newGame(PLAYER);
 
-        assertThat(succeeded).isTrue();
-
-        assertGameInRepository(player);
+        Game game = getGameInRepository();
+        assertThat(game.getWord()).isEqualTo(CORRECT_WORD);
+        assertThat(game.getAttemptNumber()).isZero();
+        assertThat(game.getPlayer()).isSameAs(PLAYER);
     }
 
     @Test
-    void selectsRandomWord() {
-        givenWordInRepository();
-        givenNoGameExists(player);
+    void cannotRestartGameInProgress() {
+        when(gameRepository
+                .fetchForPlayer(eq(PLAYER)))
+                .thenReturn(Optional.of(
+                        Game.create(PLAYER, CORRECT_WORD)));
+        var success = wordz.newGame(PLAYER);
 
-        wordz.newGame(player);
-
-        verify(gameRepository).create(gameArgument.capture());
-        var game = gameArgument.getValue();
-
-        assertThat(game.getWord()).isEqualTo(TARGET_WORD);
+        assertThat(success).isFalse();
     }
 
-    @Test
-    void cannotStartNewGameDuringPlay() {
-        givenGameInProgress(player);
-
-        boolean succeeded = wordz.newGame(player);
-
-        assertThat(succeeded).isFalse();
-    }
-
-    @Test
-    void startsNewGameAfterGameOver() {
-        givenWordInRepository();
-        givenGameOver(player);
-
-        boolean succeeded = wordz.newGame(player);
-
-        assertThat(succeeded).isTrue();
-        assertGameInRepository(player);
-    }
-
-    private void givenWordInRepository() {
+    private void givenWordToSelect(String wordToSelect) {
         int wordNumber = 2;
-        when(random.next(anyInt())).thenReturn(wordNumber);
-        when(wordRepository.fetchWordByNumber(wordNumber)).thenReturn(TARGET_WORD);
+
+        when(randomNumbers.next(anyInt()))
+                .thenReturn(wordNumber);
+
+        when(wordRepository
+                .fetchWordByNumber(wordNumber))
+                .thenReturn(wordToSelect);
     }
 
-    private void givenGameInProgress(Player player) {
-        var gameInProgress = new Game(player, TARGET_WORD, 3, false);
-        when(gameRepository.fetchForPlayer(eq(player)))
-                .thenReturn(Optional.of(gameInProgress));
-    }
-
-    private void givenGameOver(Player player) {
-        var gameInProgress = new Game(player, TARGET_WORD, 3, true);
-        when(gameRepository.fetchForPlayer(eq(player)))
-                .thenReturn(Optional.of(gameInProgress));
-    }
-
-    private void givenNoGameExists(Player player) {
-        when(gameRepository.fetchForPlayer(eq(player)))
-                .thenReturn(Optional.empty());
-    }
-
-    private void assertGameInRepository(Player player) {
-        verify(gameRepository).create(gameArgument.capture());
+    private Game getGameInRepository() {
+        var gameArgument = ArgumentCaptor.forClass(Game.class);
+        verify(gameRepository)
+                .create(gameArgument.capture());
         var game = gameArgument.getValue();
-
-        assertThat(game)
-                .hasWord(TARGET_WORD)
-                .hasAttemptNumber(0)
-                .hasPlayer(player);
+        return game;
     }
 }
+

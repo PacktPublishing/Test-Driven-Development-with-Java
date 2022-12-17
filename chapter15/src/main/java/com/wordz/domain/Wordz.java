@@ -38,7 +38,7 @@ public class Wordz {
         Score score = game.attempt( guess );
 
         gameRepository.update(game);
-        return new GuessResult(score, game.isGameOver(), false);
+        return GuessResult.create(score, game.isGameOver());
     }
 
     private boolean isGameInProgress(Optional<Game> currentGame) {

@@ -23,8 +23,6 @@ public class GuessHttpResponseMapper {
             case CORRECT -> 'C';
             case PART_CORRECT -> 'P';
             case INCORRECT -> 'X';
-
-            default -> throw new IllegalStateException("Unexpected value: " + letter);
         };
     }
 }

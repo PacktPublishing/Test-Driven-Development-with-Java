@@ -28,7 +28,7 @@ public class WordzEndpoint {
                 post("/guess").to(request -> guessWord(request));
             }});
         } catch (IOException e) {
-            e.printStackTrace(); // TODO
+            throw new IllegalStateException("Wordz HTTP endpoint could not start", e);
         }
     }
 
@@ -59,7 +59,7 @@ public class WordzEndpoint {
                     .body(createGuessHttpResponse(result))
                     .done();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            return Response.of(INTERNAL_SERVER_ERROR).done();
         }
     }
 
@@ -77,5 +77,4 @@ public class WordzEndpoint {
     private Player extractPlayer(Request request) throws IOException {
         return new Gson().fromJson(request.body(), Player.class);
     }
-
 }
