@@ -50,7 +50,7 @@ public class Game {
     private void trackNumberOfAttempts() {
         attemptNumber++;
 
-        if (attemptNumber == MAXIMUM_NUMBER_ALLOWED_GUESSES ) {
+        if (attemptNumber == MAXIMUM_NUMBER_ALLOWED_GUESSES) {
             end();
         }
     }
@@ -59,7 +59,7 @@ public class Game {
         return isGameOver;
     }
 
-    private void end() {
+    void end() {
         isGameOver = true;
     }
 }

@@ -7,8 +7,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Optional;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
@@ -56,9 +54,9 @@ public class GuessTest {
 
     @Test
     void rejectsGuessAfterGameOver(){
-        var gameOver = new Game(PLAYER, CORRECT_WORD,
-                    1, true);
-        givenGameInRepository( gameOver );
+        var game = Game.create(PLAYER, CORRECT_WORD);
+        game.end();
+        givenGameInRepository( game );
 
         GuessResult result = wordz.assess(PLAYER, WRONG_WORD);
 
