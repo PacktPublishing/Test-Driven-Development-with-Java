@@ -1,7 +1,6 @@
 package examples;
 
 public class DiceRoll {
-
     private final int NUMBER_OF_SIDES = 6;
     private final RandomNumbers rnd;
 
