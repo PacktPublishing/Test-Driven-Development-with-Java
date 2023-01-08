@@ -23,11 +23,15 @@ public class WordRepositoryPostgresTest {
     @SuppressWarnings("unused") // Used by DBRider framework
     private final ConnectionHolder connectionHolder = () -> dataSource.getConnection();
 
+    /**
+     * As this method only sets up a connection to the database and does not
+     * create any stored data, there is a good argument for using the @BeforeAll
+     * annotation and doing this once for all tests in this class
+     */
     @BeforeEach
     void setupConnection() {
         this.dataSource = new PostgresTestDataSource();
     }
-
 
     @Test
     @DataSet("adapters/data/wordTable.json")
@@ -48,7 +52,4 @@ public class WordRepositoryPostgresTest {
 
         assertThat(actual).isEqualTo(3);
     }
-
-
-
 }

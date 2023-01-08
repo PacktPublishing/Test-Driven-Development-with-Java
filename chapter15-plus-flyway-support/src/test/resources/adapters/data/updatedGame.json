@@ -1,0 +1,10 @@
+{
+  "game": [
+    {
+      "player_name": "player1",
+      "word" : "BONUS",
+      "attempt_number": 1,
+      "is_game_over": false
+    }
+  ]
+}
