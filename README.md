@@ -62,3 +62,8 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 ## Get to Know the Author
 **Alan Mellor**
 is an academy lead at BJSS, training the next generation of consulting software engineers, and the author of Java OOP Done Right: Create object-oriented code you can be proud of with modern Java. Alan started with a Sinclair ZX81 computer with 1K of RAM and is very happy to have better computers now. Alan’s work includes industrial control in C, web applications for e-commerce, gaming, and banking in Java and Go, and document warehousing in C++. His most visible code is part of Nokia Bounce and the RAF Red Arrows flight simulator if you go back far enough.
+
+### Download a free PDF
+
+ <i>If you have already purchased a print or Kindle version of this book, you can get a DRM-free PDF version at no cost.<br>Simply click on the link to claim your free PDF.</i>
+<p align="center"> <a href="https://packt.link/free-ebook/9781803236230">https://packt.link/free-ebook/9781803236230 </a> </p>
