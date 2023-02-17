@@ -53,6 +53,10 @@ With the following software and hardware list you can run all code files present
 
 We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](https://packt.link/kLcmS).
 
+## Errata
+
+* Page 90 (Code Block 1, line 4): **private void assertScoreForGuess(Score score, Letter…** _should be_ **private void assertScoreForGuess( Score score, Letter… expectedScores )**
+
 ### Related products
 * Pragmatic Test-Driven Development in C# and .NET [[Packt]](https://www.packtpub.com/product/pragmatic-test-driven-development-in-c-and-net/9781803230191?utm_source=github&utm_medium=repository&utm_campaign=9781803230191) [[Amazon]](https://www.amazon.com/dp/1803230193)
 
