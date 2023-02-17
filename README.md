@@ -1,8 +1,8 @@
 # Test-Driven Development with Java
 
-<a href="https://www.amazon.com/Test-Driven-Development-Java-higher-quality-architecture/dp/180323623X/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=&sr=&utm_source=github&utm_medium=repository&utm_campaign=9781804613900"><img src="https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/41q8JZy17PL._SX403_BO1,204,203,200_.jpg" alt="Test-Driven Development with Java" height="256px" align="right"></a>
+<a href="https://www.packtpub.com/product/test-driven-development-with-java/9781803236230"><img src="https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/41q8JZy17PL._SX403_BO1,204,203,200_.jpg" alt="Test-Driven Development with Java" height="256px" align="right"></a>
 
-This is the code repository for [Test-Driven Development with Java](https://www.amazon.com/Test-Driven-Development-Java-higher-quality-architecture/dp/180323623X/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=&sr=&utm_source=github&utm_medium=repository&utm_campaign=9781804613900), published by Packt.
+This is the code repository for [Test-Driven Development with Java](https://www.packtpub.com/product/test-driven-development-with-java/9781803236230), published by Packt.
 
 **Create higher-quality software by writing tests first with SOLID and hexagonal architecture**
 
