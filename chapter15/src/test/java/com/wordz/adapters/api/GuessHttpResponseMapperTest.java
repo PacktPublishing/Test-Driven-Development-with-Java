@@ -13,7 +13,7 @@ class GuessHttpResponseMapperTest {
     private GuessHttpResponse actual;
 
     @BeforeEach
-    private void setup() {
+    void setup() {
         // Correct, Part correct, Incorrect, Incorrect, Incorrect
         Score score = new Score("ABCZZ");
         score.assess("ACBXX");
